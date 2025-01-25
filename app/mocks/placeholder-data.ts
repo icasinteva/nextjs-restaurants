@@ -122,14 +122,7 @@ export const products = [
   },
 ];
 
-export const reviews: {
-  rest_id: string;
-  id: string;
-  user_id: string;
-  text: string;
-  rating: number;
-  date?: string;
-}[] = [
+export const reviews = [
   {
     rest_id: restaurants[0].id,
     id: '5909796d-5030-4e36-adec-68b8f9ec2d96',
