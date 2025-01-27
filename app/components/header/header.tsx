@@ -3,7 +3,7 @@
 import Logo from '@/app/icons/logo.svg';
 import styles from './header.module.css';
 
-// import CurrencySwitcher from '../currency-switcher';
+import CurrencySwitcher from '../currency-switcher';
 import Link from 'next/link';
 
 const Header = () => {
@@ -12,7 +12,7 @@ const Header = () => {
       <Link href='/restaurants'>
         <Logo />
       </Link>
-      {/* <CurrencySwitcher /> */}
+      <CurrencySwitcher />
     </header>
   );
 };

@@ -122,6 +122,104 @@ export const products = [
   },
 ];
 
+export const ingredients = [
+  {
+    rest_id: products[0].rest_id,
+    product_id: products[0].id,
+    name: 'chicken',
+  },
+  {
+    rest_id: products[0].rest_id,
+    product_id: products[0].id,
+    name: 'rice',
+  },
+  {
+    rest_id: products[0].rest_id,
+    product_id: products[1].id,
+    name: 'bread',
+  },
+  {
+    rest_id: products[0].rest_id,
+    product_id: products[2].id,
+    name: 'chicken',
+  },
+  {
+    rest_id: products[0].rest_id,
+    product_id: products[2].id,
+    name: 'bread',
+  },
+  {
+    rest_id: products[1].rest_id,
+    product_id: products[3].id,
+    name: 'bread',
+  },
+  {
+    rest_id: products[1].rest_id,
+    product_id: products[3].id,
+    name: 'cheese',
+  },
+  {
+    rest_id: products[1].rest_id,
+    product_id: products[3].id,
+    name: 'tomatoes',
+  },
+  {
+    rest_id: products[1].rest_id,
+    product_id: products[4].id,
+    name: 'bread',
+  },
+  {
+    rest_id: products[1].rest_id,
+    product_id: products[4].id,
+    name: 'cheese',
+  },
+  {
+    rest_id: products[1].rest_id,
+    product_id: products[4].id,
+    name: 'tomatoes',
+  },
+  {
+    rest_id: products[1].rest_id,
+    product_id: products[4].id,
+    name: 'chicken',
+  },
+  {
+    rest_id: products[2].rest_id,
+    product_id: products[5].id,
+    name: 'bread',
+  },
+  {
+    rest_id: products[2].rest_id,
+    product_id: products[6].id,
+    name: 'bread',
+  },
+  {
+    rest_id: products[2].rest_id,
+    product_id: products[6].id,
+    name: 'cream',
+  },
+  {
+    rest_id: products[2].rest_id,
+    product_id: products[7].id,
+    name: 'bread',
+  },
+  {
+    rest_id: products[3].rest_id,
+    product_id: products[8].id,
+    name: 'beef',
+  },
+  {
+    rest_id: products[3].rest_id,
+    product_id: products[9].id,
+    name: 'bread',
+  },
+  {
+    rest_id: products[3].rest_id,
+    product_id: products[9].id,
+    name: 'beef',
+  },
+];
+
 export const reviews = [
   {
     rest_id: restaurants[0].id,

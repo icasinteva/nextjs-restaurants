@@ -1,0 +1,16 @@
+.star {
+  display: inline-block;
+  fill: var(--grey);
+}
+
+.checked {
+  fill: var(--yellow);
+}
+
+.unknown {
+  fill: transparent;
+}
+
+.clickable {
+  cursor: pointer;
+}

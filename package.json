@@ -6,8 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@svgr/webpack": "^8.1.0",
     "@heroicons/react": "^2.2.0",
+    "@svgr/webpack": "^8.1.0",
     "@tailwindcss/forms": "^0.5.10",
     "@vercel/postgres": "^0.10.0",
     "autoprefixer": "10.4.20",
@@ -18,15 +18,18 @@
     "postcss": "8.5.1",
     "react": "latest",
     "react-dom": "latest",
+    "react-transition-group": "^4.4.5",
     "tailwindcss": "3.4.17",
     "typescript": "5.7.3",
     "use-debounce": "^10.0.4",
+    "uuid": "^11.0.5",
     "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/node": "22.10.7",
     "@types/react": "19.0.7",
-    "@types/react-dom": "19.0.3"
+    "@types/react-dom": "19.0.3",
+    "@types/react-transition-group": "^4.4.12"
   }
 }

@@ -4,6 +4,7 @@ import {
   products,
   reviews,
   users,
+  ingredients,
 } from '../../mocks/placeholder-data';
 
 const client = await db.connect();
@@ -34,6 +35,8 @@ async function seedUsers() {
 async function seedProducts() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
+  await client.sql`DROP TABLE IF EXISTS products`;
+
   await client.sql`
     CREATE TABLE IF NOT EXISTS products (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -46,8 +49,8 @@ async function seedProducts() {
   const insertedProducts = await Promise.all(
     products.map(
       (product) => client.sql`
-        INSERT INTO products (rest_id, name, price)
-        VALUES (${product.rest_id}, ${product.name}, ${product.price})
+        INSERT INTO products (id, rest_id, name, price)
+        VALUES (${product.id}, ${product.rest_id}, ${product.name}, ${product.price})
         ON CONFLICT (id) DO NOTHING;
       `
     )
@@ -56,8 +59,37 @@ async function seedProducts() {
   return insertedProducts;
 }
 
+async function seedIngredients() {
+  await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+  await client.sql`DROP TABLE IF EXISTS ingredients`;
+
+  await client.sql`
+    CREATE TABLE IF NOT EXISTS ingredients (
+      id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+      rest_id UUID NOT NULL,
+      product_id UUID NOT NULL,
+      name VARCHAR
+    );
+  `;
+
+  const insertedIngredients = await Promise.all(
+    ingredients.map(
+      (ingridient) => client.sql`
+        INSERT INTO ingredients (rest_id, product_id, name)
+        VALUES (${ingridient.rest_id}, ${ingridient.product_id}, ${ingridient.name})
+        ON CONFLICT (id) DO NOTHING;
+      `
+    )
+  );
+
+  return insertedIngredients;
+}
+
 async function seedReviews() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+  await client.sql`DROP TABLE reviews`;
 
   await client.sql`
     CREATE TABLE IF NOT EXISTS reviews (
@@ -73,8 +105,8 @@ async function seedReviews() {
   const insertedReviews = await Promise.all(
     reviews.map(
       (review) => client.sql`
-        INSERT INTO reviews (rest_id, user_id, rating)
-        VALUES (${review.rest_id}, ${review.user_id}, ${review.rating})
+        INSERT INTO reviews (rest_id, user_id, text, rating)
+        VALUES (${review.rest_id}, ${review.user_id}, ${review.text}, ${review.rating})
         ON CONFLICT (id) DO NOTHING;
       `
     )
@@ -109,16 +141,16 @@ async function seedRestaurants() {
 export async function GET() {
   try {
     await client.sql`BEGIN`;
-    await seedUsers();
-    await seedRestaurants();
-    await seedProducts();
-    await seedReviews();
+    // await seedUsers();
+    // await seedRestaurants();
+    // await seedProducts();
+    await seedIngredients();
+    // await seedReviews();
     await client.sql`COMMIT`;
 
     return Response.json({ message: 'Database seeded successfully' });
   } catch (error) {
     await client.sql`ROLLBACK`;
-    console.log('ERROR: ', error);
     return Response.json({ error }, { status: 500 });
   }
 }
