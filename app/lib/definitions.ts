@@ -22,6 +22,11 @@ export type ProductWithIngredients = Product & {
   ingredients: string[];
 };
 
+export type OrderItem = ProductWithIngredients & {
+  amount: number;
+  subtotal: number;
+};
+
 export type Review = {
   user: string;
   rating: number;

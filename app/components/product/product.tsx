@@ -1,29 +1,19 @@
+import { useContext } from 'react';
+
+import OrderContext from '@/app/contexts/order-context';
 import { Convert } from '@/app/contexts/currency-context';
+import { UseOrder } from '@/app/hooks/use-order';
 import { ProductWithIngredients } from '@/app/lib/definitions';
 import { Button } from '@/app/ui/button';
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline';
 
 import styles from './product.module.css';
 
-function Product({
-  product,
-  amount,
-  handleAmountChange,
-}: {
-  product: ProductWithIngredients;
-  amount: number;
-  handleAmountChange: (
-    id: ProductWithIngredients['id'],
-    amount: number
-  ) => void;
-}) {
+function Product({ product }: { product: ProductWithIngredients }) {
   const { id, name, price, ingredients } = product;
-
-  const handleAmountClick = (mode: '-' | '+') => {
-    const newAmount = mode === '-' ? --amount : ++amount;
-
-    handleAmountChange(id, newAmount);
-  };
+  const { getAmount, decrement, increment } = useContext(
+    OrderContext
+  ) as UseOrder;
 
   return (
     <div className={styles.product} data-id='product'>
@@ -38,18 +28,18 @@ function Product({
         <div>
           <div className={styles.counter}>
             <div className={styles.count} data-id='product-amount'>
-              {amount}
+              {getAmount(id)}
             </div>
             <div className={styles.buttons}>
               <Button
-                onClick={handleAmountClick.bind(null, '-')}
+                onClick={decrement.bind(null, id)}
                 className='rounded-md border p-2 hover:bg-gray-100'
                 data-id='product-decrement'
               >
                 <MinusIcon className='w-5' />
               </Button>
               <Button
-                onClick={handleAmountClick.bind(null, '+')}
+                onClick={increment.bind(null, id)}
                 className='rounded-md border p-2 hover:bg-gray-100'
                 data-id='product-decrement'
               >
